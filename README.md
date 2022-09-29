@@ -116,7 +116,6 @@ The deliverables for this projects are:
      - Tag: mips-echo-loop
 
   1. echo.s: prints out the command-line arguments
-     - Language: MIPS
      - Task: augment the loop to walk the argv structure and print the corresponding command-line argument
      - Tag: mips-echo-done
 
