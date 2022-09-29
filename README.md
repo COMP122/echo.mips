@@ -4,7 +4,8 @@
    1. Write a Java program equivalent to the echo utility
    1. Write a MIPS program equivalent to the echo utility
 
-## Echo Overview (from ``man echo``)
+## Echo Overview
+  - ``$ man echo``
   - Name:
     * echo - write arguments to the standard output
 
@@ -75,7 +76,7 @@ The MARS application requires additional syntax to call a MIPS program with argu
   - pa (program arguments): indicate that the following command-line arguments are passed to the echo.s program.
 
 
-Given the command ``echo one two three four``, we can depict the values of argc and argv as follows:
+Given the command ``$ echo one two three four``, we can depict the values of argc and argv as follows:
 ![The data structure for the argv](/argv.png).
 
 Note the following within the diagram:
