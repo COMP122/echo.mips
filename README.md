@@ -38,26 +38,42 @@ To complete this project successfully, each of your individual deliverables must
 
 Consider the following prototypes for the main method/function in Java and C, which are practically equivalent.
 
-   - Java
-     ```java
-        public static int main(String args[]);
-     ```
-   - C
-     ```C
-       int main(int argc, char * argv[]);
-     ```
+  - Java
+    * Example usage: ``java echo one two three four``
+    ```java
+       public static int main(String args[]);
+    ```
+  - C
+    * Example usage: ``echo one two three four``
+    ```C
+      int main(int argc, char * argv[]);
+    ```
 
-     * argc is an integer representing the **arg**ument **c**ount
-       - in Java parlance, argc is equivalent to args.length;
+    * argc is an integer representing the **arg**ument **c**ount
+      - In Java parlance, argc is equivalent to args.length;
 
-     * argv is an array, where each element is a string.
-       - In C, a string is implemented as a pointer to a char, e.g., (char \*).
-       - In Java, the underlying implementation of a String is also a pointer to a char.
+    * argv is an array, where each element is a string.
+      - In C, a string is implemented as a pointer to a char, e.g., (char \*).
+      - In Java, the underlying implementation of a String is also a pointer to a char.
 
-A MIPS program can also have command-line arguments. These are, however, proved to the main subroutine via the registers.
+A MIPS program can also have command-line arguments. These are not provided via formal arguments as in Java and C, but are provided to the main subroutine via registers.
 
-   - argc is placed into $a0, and the value represents an integer
-   - argv is placed into $a1, and the value represents the address of argv
+  - argc is placed into $a0, and the value represents an integer
+  - argv is placed into $a1, and the value represents the address of argv
+
+The MARS application requires additional syntax to call a MIPS program with arguements from the command line.  This syntax is as follows:
+
+  ```
+  $ mars echo.s pa apple peach grape
+  MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
+   
+  apple
+  peach
+  grape
+   
+  ```
+  - pa (program arguments): indicate that the following command-line arguments are passed to the echo.s program.
+
 
 Given the command ``echo one two three four``, we can depict the values of argc and argv as follows:
 ![The data structure for the argv](/argv.png).
