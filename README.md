@@ -59,7 +59,7 @@ A MIPS program can also have command-line arguments. These are, however, proved 
    - argv is placed into $a1, and the value represents the address of argv
 
 The structure of the argv data structure is depicted as follows:
-![The data structure for the argv](argv.png)
+![The data structure for the argv](/argv.png)
 
 
 
