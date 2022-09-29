@@ -43,21 +43,21 @@ Consider the following prototypes for the main method/function in Java and C, wh
 
   - Java
     * Example usage: ``$ java echo one two three four``
-    ```java
-       public static int main(String args[]);
-    ```
+      ```java
+         public static int main(String args[]);
+      ```
   - C
     * Example usage: ``$ echo one two three four``
-    ```C
-      int main(int argc, char * argv[]);
-    ```
+      ```C
+        int main(int argc, char * argv[]);
+      ```
 
-    * argc is an integer representing the <i>arg</i>ument <i>c</i>ount
+    * argc is an integer representing the <u>arg</u>ument <u>c</u>ount
       - In Java parlance, argc is equivalent to args.length
 
     * argv is an array, where each element is a string
       - In C, a string is implemented as a pointer to a char, e.g., (char \*)
-      - In Java, the <i>underlying</i> implementation of a String is also a pointer to a char
+      - In Java, the <u>underlying</u> implementation of a String is also a pointer to a char
 
 A MIPS program can also have command-line arguments. These are not provided via formal arguments as in Java and C, but are provided to the main subroutine via registers.
 
@@ -92,7 +92,7 @@ Note the following within the diagram:
       - This address is the starting location of each string: "one", "two", "three", and "four". This address is not provided in the diagram, but is depicted by a pointer.
    1. The variable p_arg has been introduced into the diagram.
       - Via a loop, we can examine each element of the argv array: argv[0] ... argv[3].
-      - The p_arg variable is used to <i>p</i>oint to the current <i>arg</i>ument being examined.
+      - The p_arg variable is used to <u>p</u>oint to the current <u>arg</u>ument being examined.
 
 
 
@@ -100,22 +100,18 @@ Note the following within the diagram:
 
 The deliverables for this projects are:
   1. echo.java: which prints out the number of command-line arguments
-     - Language: Java
      - Task: ensure provided starter code works
      - Tag: java-echo-start
 
   1. echo.java: which prints out each of the the command-line arguments 
-     - Language: Java
      - Task: insert a for-loop to print each argument separated by a space (' ')
      - Tag: java-echo-done
 
   1. echo.s: which prints out the number of command-line arguments
-     - Language: MIPS
      - Task: ensure provided starter code works
      - Tag: mips-echo-start
 
-  1. echo.s: which prints out the series 1 .. argc 
-     - Language: MIPS
+  1. echo.s: which prints out the series 1..argc 
      - Task: insert a loop to print each value in the series on individual lines
      - Tag: mips-echo-loop
 
@@ -167,7 +163,7 @@ The deliverables for this projects are:
           1. Bookkeeping comments have been added to identify register allocation
           1. Code has been added to de-marshal the formal arguments
           1. A syscall, via the print_d macro, is used to print a decimal number
-          1. A syscall, via the exiti macro, is used to exit the program with an <i>i</i>mmediate value
+          1. A syscall, via the exiti macro, is used to exit the program with an <u>i</u>mmediate value
        1. Use the booking comments to guide your develop.
        1. Test this program to ensure it works correctly.
           ```
@@ -211,12 +207,12 @@ The deliverables for this projects are:
           ```
 
      * Stage 5: 
-       1. Modify your loop to ...
+       1. Modify your loop to
           - walk the argv array
             - initialize p_arg to be the value of argv before the start of the loop
             - increment the value p_arg by 4 at the end of each loop iteration
           - print each string, in turn, within the body of the loop
-            - set the value of str to be equal that address stored at p_args
+            - set the value of str to be equal that address stored at p_args <br>
               ``lw $t4, 0($t3)          #   str = (* p_args)``
             - call the ``print_s`` syscall to print the string
 
