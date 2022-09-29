@@ -1,78 +1,116 @@
-# Echo
-### Program: Echo-ing the command line arguements
+# The Echo Utility
 
-# Objectives:
-   1. to introduce the command "echo" to the students
-   1. to introduce command-line arguments in Java
-   1. to write a MIPS program that is functional equivalent to the "echo"
-      - 
+## Assignment:
+   1. Write a Java program equivalent to the echo utility
+   1. Write a MIPS program equivalent to the echo utility
 
-# Purpose:
-This is your first MIPS program.  It is
+## Echo Overview
+  - Name:
+    * echo - write aruments to the standard output
+
+  - Description:
+    - The echo utility writes any specified operands, separated by single blank (' ') characters and followed by a newline (‘\n’) character, to the standard output.
+
+  - Example:
+    ```
+    $ echo one two three
+    one two three
+    $
+    ```
+
+## Assignment Objectives:
+   1. Introduce command line processing
+   1. To exercise your Java knowledge to create the 'echo' command
+   1. To introduce you to MIPS programming:
+      - the structure of the main subroutine
+      - the command-line argument passing convention
+      - the use of syscall to perform I/O operations
+      - using a loop to iterate over an array of Strings
+   1. To further your knowledge in the use of "git"
 
 
-To guide you through the development process, this program is to be developed in individual stages.  Each stage will be tagged and can subsequently tested as a valid program.  The stages of this assignment are as follows:
+## Project Overview
+This is your first MIPS program. You will be guided through this development process, via a set of stages. Each stage is designed to bring you closer to the final MIPS program.  Moreover, each stage produces a working program; said program is a deliverable that must be tested and submitted for grading.
 
-   1. The echo program written in Java.
-      - language: Java
-      - See (command-line-argument)[https://www.javatpoint.com/command-line-argument]
-      - tag: 
-   1. Comand line count
-   1. Loop with 
-   1. 
+The deliverables for this projects are:
+  1. echo.java: prints out the number of command-line arguments
+     - Language: Java
+     - Task: ensure provided starter code works
+     - Repo Tag: java-echo-start
 
-# Assignment:
-Write a Java program that computes a simple checksum of 8-bit integers.  This program is *based* upon the calculation of the checksum value of a IPv4 header, defined by RFC791. 
+  1. echo.java: prints out of the command-line arguments 
+     - Language: Java
+     - Tasks: insert a for-loop to process each argument in turn
+     - Repo Tag: java-echo-done
 
-You may use any editor or IDE (for example eclispe) to develop the program.  You must, however, test your program via the commandline.  To do this final testing step, you might have to install a current version of java onto your computer.  (https://www.java.com/en/download/)
+  1. echo.s: prints out the number of command-line arguments
+     - Language: MIPS
+     - Task: ensure provided starter code works
+     - Repo Tag: mips-echo-start
 
-This program should conform to the following specification:
+  1. echo.s: counts and prints the number of command-line arguments
+     - Language: MIPS
+     - Task: insert a loop to that counts from 1 to the number of arguments
+     - Repo Tag: mips-echo-loop
 
-  
+  1. echo.s: prints out the command-line arguments
+     - Language: MIPS
+     - Task: augment the loop to walk the argv structure and print the corresponding command-line argument
+     - Repo Tag: mips-echo-done
+
 
 ### Development Steps:
- 1. Accept and clone the assignment
- 1. Work on the Java version of the project
-    1. Create an file called echo.java that includes the starter code
-    1. Test this program to ensure it works correctly
-       ```
-       $ javac echo.java
-       $ java echo one two three four
-       4
-       $
-       ```
-    1. Commit this working version to repo
+ 1. Accept and clone the assignment.
+ 1. Work on the Java version of the project.
+
+    1. Stage 1:
+       * Create a file called "echo.java" that includes the starter code.
+       * Test this program to ensure it works correctly
+          ```
+          $ javac echo.java
+          $ java echo one two three four
+          4
+          $
+          ```
+       * Commit this working version to your repository
        - ``git add echo.java``
        - ``git commit -m 'some informative message'`` 
        - ``git tag java-echo-start``
-    1. Using the web site provided as a guide, complete a working version "echo.java"
-    1. Test this program to ensure it works correctly
-       ```
-       $ javac echo.java
-       $ java echo one two three four
-       one two three four
-       $
-       ```
-    1. Commit this working version to repo
-       - ``git add echo.java``
-       - ``git commit -m 'some informative message'`` 
-       - ``git tag java-echo-done``
 
- 1. Work on the MIPS version of the project
-    1. Stage 1: Getting Started
-       1. Create an file called echo.s that includes the starter code
-       1. Test this program to ensure it works correctly
+    1. Stage 2:
+       * Insert a for-loop to, in-turn, print out each command-line argument
+         - You may use this web site (or other) to help you write your code
+         - https://www.javatpoint.com/command-line-argument
+
+       * Test this program to ensure it works correctly
+         ```
+         $ javac echo.java
+         $ java echo one two three four
+         one two three four
+         $
+         ```
+
+       * Commit this working version to your repository
+         - ``git add echo.java``
+         - ``git commit -m 'some informative message'`` 
+         - ``git tag java-echo-done``
+---
+ 1. Work on the Java version of the project.
+    1. Stage 3: MIPS code to echo the number of command-line arguments
+       * Create an file called echo.s that includes the starter code
+       * Test this program to ensure it works correctly
           ```
           $ mars me echo.s pa apple peach grape 2>/dev/null
           4
           $
           ```
-       1. Commit this working version to repo
+       * Commit this working version to repo
           - ``git add echo.s``
           - ``git commit -m 'some informative message'`` 
           - ``git tag mips-echo-start``
-    1. Stage 2: Looping from 0 to argc -1
-       1. Consider the following Java loop
+
+    1. Stage 4: Looping from 0 to argc -1
+       * Consider the following Java loop
           ```
           i=0;
           for( ; i < argc; ) {
@@ -80,7 +118,8 @@ This program should conform to the following specification:
             i++;
           }
           ```
-       1. Incorporate the following MIPS that is equivalent to the above Java loop
+       1. Incorporate the following MIPS loop into your program
+          -  this loop is equivalent to the above Java loop
           ``` 
                  li $t1, 0              # i=0
           loop:  bge $t1, $t0, done     # for ( ; i < argc ; ) {
@@ -90,17 +129,17 @@ This program should conform to the following specification:
                  b loop                 #
           done:  nop                    # }
           ```
-       1. Remove the code that prints out the number of arguments.
-       1. Test your code to ensure you have the following output
+       *  Remove the code that prints out the number of arguments.
+       *  Test your code to ensure you have the following output
           ```
-          
           $ mars me echo_cmd_line.s pa apple peach grape 2>/dev/null
           1
           2
           3
           $
           ```
-    1. Stage 3: Print out each command-line argument
+
+    1. Stage 5: 
        1. Modify your loop to ...
           - walk the argv array
           - print each string
@@ -111,14 +150,15 @@ This program should conform to the following specification:
           $
           ```
 
-   1. Stage 4: Final Test
-      1. Run each of the test cases in the "Validation Testing" Section
-      1. Ensure you commit, and push your submission to the remote repo.
-         ```
-         $ git push           # push all of your code
-         $ git push --tags    # push all of your tags
-         ```
-         - Note that the command ``git push --mirror`` will push your code and tags in one step.
+1. Perform final testing and submitting your project
+   
+   1. Run each of the test cases in the "Validation Testing" Section
+   1. Ensure you push both your code and your tags to your repository 
+      ```
+      $ git push           # push all of your code
+      $ git push --tags    # push all of your tags
+      ```
+      - Note that the command ``git push --mirror`` will push your code and tags in one step.
 
 
     
