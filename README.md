@@ -21,8 +21,8 @@
     ```
 
 ## Assignment Objectives:
-   1. Introduce command-line processing
-   1. To exercise the student Java knowledge to create the 'echo' command
+   1. To introduce command-line processing
+   1. To exercise the student's Java knowledge to create the 'echo' command
    1. To introduce the student to MIPS programming:
       1. the structure of the main subroutine
       1. the command-line argument passing convention
@@ -32,37 +32,39 @@
 
 
 ## Project Description
-This is your first MIPS program. To complete this program, you will be guided through a prescribed development process, via a set of stages. Each stage is designed to help you to better understand the problem at hand or to complete the final MIPS program.  Moreover, each stage produces a working program, which is a deliverable associated with this project.  
+To complete this program, you will be guided through a prescribed development process, via a set of stages. Each stage is designed to help you to better understand the problem at hand or to complete the final MIPS program.  Moreover, each stage produces a working program, which is a deliverable associated with this project.  
+
 To complete this project successfully, each of your individual deliverables must compile/assemble and pass the Professor's test cases. 
 
-### Command Line Processing and the argv data structure
+
+### Command Line Processing and the argv Data Structure
 
 Consider the following prototypes for the main method/function in Java and C, which are practically equivalent.
 
   - Java
-    * Example usage: ``java echo one two three four``
+    * Example usage: ``$ java echo one two three four``
     ```java
        public static int main(String args[]);
     ```
   - C
-    * Example usage: ``echo one two three four``
+    * Example usage: ``$ echo one two three four``
     ```C
       int main(int argc, char * argv[]);
     ```
 
     * argc is an integer representing the **arg**ument **c**ount
-      - In Java parlance, argc is equivalent to args.length;
+      - In Java parlance, argc is equivalent to args.length
 
-    * argv is an array, where each element is a string.
-      - In C, a string is implemented as a pointer to a char, e.g., (char \*).
-      - In Java, the underlying implementation of a String is also a pointer to a char.
+    * argv is an array, where each element is a string
+      - In C, a string is implemented as a pointer to a char, e.g., (char \*)
+      - In Java, the underlying implementation of a String is also a pointer to a char
 
 A MIPS program can also have command-line arguments. These are not provided via formal arguments as in Java and C, but are provided to the main subroutine via registers.
 
   - argc is placed into $a0, and the value represents an integer
   - argv is placed into $a1, and the value represents the address of argv
 
-The MARS application requires additional syntax to call a MIPS program with arguements from the command line.  This syntax is as follows:
+The MARS application requires additional syntax to call a MIPS program with arguments from the command line. This syntax is as follows:
 
   ```
   $ mars echo.s pa apple peach grape
@@ -77,14 +79,15 @@ The MARS application requires additional syntax to call a MIPS program with argu
 
 
 Given the command ``$ echo one two three four``, we can depict the values of argc and argv as follows:
-![The data structure for the argv](/argv.png).
+
+![The data structure for the argv](/argv.png)
 
 Note the following within the diagram:
    1. The rval of argc is four.
    1. The rval of argv is an address in memory: 0x7fffefec.
    1. The depicted addresses of memory are in increments of 4.
       - Recall, an address is a 32-bit quantity on the MIPS architecture.
-      - Hence, 4 bytes are required to store a 32-bit quantity.
+      - Hence, 4 bytes are required to store each 32-bit quantity.
    1. The rval of each array element is an address.
       - This address is the starting location of each string: "one", "two", "three", and "four".
    1. The variable p_arg has been introduced into the diagram.
@@ -122,63 +125,62 @@ The deliverables for this projects are:
 
 
 ### Development Steps:
- 1. Accept and clone the assignment.
- 1. Work on the Java version of the project.
-
-    1. Stage 1:
-       * Create a file called "echo.java" that includes the starter code.
-       * Test this program to ensure it works correctly
+  1. Accept and clone the assignment.
+  1. Work on the Java version of the project.
+     * Stage 1:
+       1. Create a file called "echo.java" that includes the starter code.
+       1. Test this program to ensure it works correctly
           ```
           $ javac echo.java
           $ java echo one two three four
           4
           $
           ```
-       * Commit this working version to your repository
-       - ``git add echo.java``
-       - ``git commit -m 'some informative message'`` 
-       - ``git tag java-echo-start``
+       1. Commit this working version to your repository
+          - ``git add echo.java``
+          - ``git commit -m 'some informative message'`` 
+          - ``git tag java-echo-start``
 
-    1. Stage 2:
-       * Insert a for-loop to, in-turn, print out each command-line argument
-         - You may use this web site (or other) to help you write your code
-         - https://www.javatpoint.com/command-line-argument
+     * Stage 2:
+       1. Insert a for-loop to, in-turn, print out each command-line argument
+          - You may use the following web site (or other) to help you write your code
+          - https://www.javatpoint.com/command-line-argument
 
-       * Test this program to ensure it works correctly
-         ```
-         $ javac echo.java
-         $ java echo one two three four
-         one two three four
-         $
-         ```
+       1. Test this program to ensure it works correctly
+          ```
+          $ javac echo.java
+          $ java echo one two three four
+          one two three four
+          $
+          ```
 
-       * Commit this working version to your repository
-         - ``git add echo.java``
-         - ``git commit -m 'some informative message'`` 
-         - ``git tag java-echo-done``
+       1. Commit this working version to your repository
+          - ``git add echo.java``
+          - ``git commit -m 'some informative message'`` 
+          - ``git tag java-echo-done``
 ---
- 1. Work on the Java version of the project.
-    1. Stage 3: 
-       * Create an file called echo.s that includes the starter code
-       * Note the following within the echo.s file
-         1. Bookkeeping comments have been added to identify register allocation
-         1. Code has been added to de-marshal the formal arguments
-         1. A syscall, via the print_d macro, is used to print a decimal number
-         1. A syscall, via the exiti macro, is used to exit the program with an **i**mmediate value
-       * Use the booking comments to guide your develop.
-       * Test this program to ensure it works correctly.
+  1. Work on the Java version of the project.
+     * Stage 3: 
+       1. Create an file called echo.s that includes the starter code
+       1. Note the following within the echo.s file
+          1. Bookkeeping comments have been added to identify register allocation
+          1. Code has been added to de-marshal the formal arguments
+          1. A syscall, via the print_d macro, is used to print a decimal number
+          1. A syscall, via the exiti macro, is used to exit the program with an **i**mmediate value
+       1. Use the booking comments to guide your develop.
+       1. Test this program to ensure it works correctly.
           ```
           $ mars me echo.s pa apple peach grape 2> /dev/null
           4
           $
           ```
-       * Commit this working version to your repository
+       1. Commit this working version to your repository
           - ``git add echo.s``
           - ``git commit -m 'some informative message'`` 
           - ``git tag mips-echo-start``
 
-    1. Stage 4: 
-       * Consider the following Java loop
+     * Stage 4: 
+       1. Consider the following Java loop
           ```
           i=0;
           for( ; i < argc; ) {
@@ -197,8 +199,8 @@ The deliverables for this projects are:
                  b loop                 #
           done:  nop                    # }
           ```
-       *  Remove the code that prints out the number of arguments.
-       *  Test your code to ensure you have the following output
+       1. Remove the code that prints out the number of arguments.
+       1. Test your code to ensure you have the following output
           ```
           $ mars me echo_cmd_line.s pa apple peach grape 2>/dev/null
           1
@@ -207,7 +209,7 @@ The deliverables for this projects are:
           $
           ```
 
-    1. Stage 5: 
+     * Stage 5: 
        1. Modify your loop to ...
           - walk the argv array
             - initialize p_arg to be the value of argv before the start of the loop
@@ -223,67 +225,63 @@ The deliverables for this projects are:
           apple peach grape
           $
           ```
-
-1. Perform final testing and submitting your project
-   
-   1. Run each of the test cases in the "Validation Testing" Section
-   1. Ensure you push both your code and your tags to your repository 
-      ```
-      $ git push           # push all of your code
-      $ git push --tags    # push all of your tags
-      ```
-      - Note that the command ``git push --mirror`` will push your code and tags in one step.
-
-
+---
+  1. Perform final testing and submitting your project
+     1. Run each of the test cases in the "Validation Testing" Section
+     1. Ensure you push both your code and your tags to your repository 
+        ```
+        $ git push           # push all of your code
+        $ git push --tags    # push all of your tags
+        ```
+        - Note that the command ``git push --mirror`` will push your code and tags in one  step. 
+ 
     
 ### Validation Testing:
 Via the command line, test your program with at least the following test cases.
 
 1. echo.java that prints out the number of command-line arguments:
-```
-$ git checkout java-echo-start
-$ javac echo.java
-$ java echo apple peach grape
-3
-$ git checkout main
-```
+   ```
+   $ git checkout java-echo-start
+   $ javac echo.java
+   $ java echo apple peach grape
+   3
+   $ git checkout main
+   ```
 
 1. echo.java that echos out the command-line arguements:
-```
-$ git checkout java-echo-done
-$ javac echo.java
-$ java echo apple peach grape
-apple peach grape
-$ git checkout main
-```
+   ```
+   $ git checkout java-echo-done
+   $ javac echo.java
+   $ java echo apple peach grape
+   apple peach grape
+   $ git checkout main
+   ```
 
 1. echo.s that prints out the number of command-line arguments:
-```
-$ git checkout mips-echo-start
-$ mars me echo.s pa apple peach grape 2>/dev/null
-3
-$ git checkout main
-```
+   ```
+   $ git checkout mips-echo-start
+   $ mars me echo.s pa apple peach grape 2>/dev/null
+   3
+   $ git checkout main
+   ```
 
 1. echo.s that counts and prints the number of command-line arguments:
-```
-$ git checkout mips-echo-loop
-$ mars me echo.s pa apple peach grape 2>/dev/null
-1
-2
-3
-$ git checkout main
-```
+   ```
+   $ git checkout mips-echo-loop
+   $ mars me echo.s pa apple peach grape 2>/dev/null
+   1
+   2
+   3
+   $ git checkout main
+   ```
 
 1. echo.s that echos out the command-line arguments:
-```
-$ git checkout mips-echo-done
-$ mars me echo.s pa apple peach grape 2>/dev/null
-apple peach grape
-$ git checkout main
-```
-
-
+   ```
+   $ git checkout mips-echo-done
+   $ mars me echo.s pa apple peach grape 2>/dev/null
+   apple peach grape
+   $ git checkout main
+   ```
 
 ### Starter Code:
 
