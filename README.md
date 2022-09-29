@@ -156,7 +156,7 @@ The deliverables for this projects are:
           - ``git add echo.java``
           - ``git commit -m 'some informative message'`` 
           - ``git tag java-echo-done``
-       ---
+     ---
   1. Work on the Java version of the project.
      * Stage 3: 
        1. Create an file called echo.s that includes the starter code
@@ -223,7 +223,7 @@ The deliverables for this projects are:
           apple peach grape
           $
           ```
-  ---
+     ---
   1. Perform final testing and submitting your project
      1. Run each of the test cases in the "Validation Testing" Section
      1. Ensure you push both your code and your tags to your repository 
