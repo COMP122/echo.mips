@@ -58,9 +58,20 @@ A MIPS program can also have command-line arguments. These are, however, proved 
    - argc is placed into $a0, and the value represents an integer
    - argv is placed into $a1, and the value represents the address of argv
 
-The structure of the argv data structure is depicted as follows:
-![The data structure for the argv](/argv.png)
+Given the command ``echo one two three four``, we can depict the values of argc and argv as follows:
+![The data structure for the argv](/argv.png).
 
+Note the following within the diagram:
+   1. The rval of argc is four.
+   1. The rval of argv is an address in memory: 0x7fffefec.
+   1. The depicted addresses of memory are in increments of 4.
+      - Recall, an address is a 32-bit quantity on the MIPS architecture.
+      - Hence, 4 bytes are required to store a 32-bit quantity.
+   1. The rval of each array element is an address.
+      - This address is the starting location of each string: "one", "two", "three", and "four".
+   1. The variable p_arg has been introduced into the diagram.
+      - Via a loop, we will exam each element of the argv array: argv[0] ... argv[3].
+      - The p_arg variable is used to **p**oint to the current **arg**ument being processed.
 
 
 ### Project Deliverables
@@ -73,7 +84,7 @@ The deliverables for this projects are:
 
   1. echo.java: which prints out each of the the command-line arguments 
      - Language: Java
-     - Task: insert a for-loop to print each argument -- in turn
+     - Task: insert a for-loop to print each argument separated by a space (' ')
      - Tag: java-echo-done
 
   1. echo.s: which prints out the number of command-line arguments
@@ -83,7 +94,7 @@ The deliverables for this projects are:
 
   1. echo.s: which prints out the series 1 .. argc 
      - Language: MIPS
-     - Task: insert a loop to that counts from 1 to the number of arguments
+     - Task: insert a loop to print the value separated by a newline ('\n')
      - Tag: mips-echo-loop
 
   1. echo.s: prints out the command-line arguments
@@ -129,20 +140,26 @@ The deliverables for this projects are:
          - ``git tag java-echo-done``
 ---
  1. Work on the Java version of the project.
-    1. Stage 3: MIPS code to echo the number of command-line arguments
+    1. Stage 3: 
        * Create an file called echo.s that includes the starter code
-       * Test this program to ensure it works correctly
+       * Note the following within the echo.s file
+         1. Bookkeeping comments have been added to identify register allocation
+         1. Code has been added to de-marshal the formal arguments
+         1. A syscall, via the print_d macro, is used to print a decimal number
+         1. A syscall, via the exiti macro, is used to exit the program with an **i**mmediate value
+       * Use the booking comments to guide your develop.
+       * Test this program to ensure it works correctly.
           ```
-          $ mars me echo.s pa apple peach grape 2>/dev/null
+          $ mars me echo.s pa apple peach grape 2> /dev/null
           4
           $
           ```
-       * Commit this working version to repo
+       * Commit this working version to your repository
           - ``git add echo.s``
           - ``git commit -m 'some informative message'`` 
           - ``git tag mips-echo-start``
 
-    1. Stage 4: Looping from 0 to argc -1
+    1. Stage 4: 
        * Consider the following Java loop
           ```
           i=0;
@@ -156,7 +173,7 @@ The deliverables for this projects are:
           ``` 
                  li $t1, 0              # i=0
           loop:  bge $t1, $t0, done     # for ( ; i < argc ; ) {
-                   print_d($t0)         #   print("%d\n", i);
+                   print_d $t0          #   print("%d\n", i);
                    print_ci '\n'        #
                    addi $t1, $t1, 1     #   i++;
                  b loop                 #
@@ -175,7 +192,13 @@ The deliverables for this projects are:
     1. Stage 5: 
        1. Modify your loop to ...
           - walk the argv array
-          - print each string
+            - initialize p_arg to be the value of argv before the start of the loop
+            - increment the value p_arg by 4 at the end of each loop iteration
+          - print each string, in turn, within the body of the loop
+            - set the value of str to be equal that address stored at p_args
+              ``lw $t4, 0($t3)          #   str = (* p_args)``
+            - call the ``print_s`` syscall to print the string
+
        1. Test your code to ensure you have the following output
           ```
           $ mars me echo_cmd_line.s pa apple peach grape 2>/dev/null
@@ -234,7 +257,7 @@ $ mars me echo.s pa apple peach grape 2>/dev/null
 $ git checkout main
 ```
 
-1. echo.s that echos out the command-line arguements:
+1. echo.s that echos out the command-line arguments:
 ```
 $ git checkout mips-echo-done
 $ mars me echo.s pa apple peach grape 2>/dev/null
@@ -285,11 +308,11 @@ $ git checkout main
             move $t1, $a1
      
             # Print number of arguments
-            print_d($t0)
+            print_d $t0
             print_ci '\n'
         
             # Return from main with the value of zero
-            exiti(0)
+            exiti 0
    ```            
 
 
