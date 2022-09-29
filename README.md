@@ -72,9 +72,7 @@ This syntax is as follows:
   $ mars echo.s pa apple peach grape
   MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
    
-  apple
-  peach
-  grape
+  apple peach graph
    
   ```
 
@@ -83,16 +81,16 @@ Given the command ``$ echo one two three four``, we can depict the values of arg
 ![The data structure for the argv](/argv.png)
 
 Note the following within the diagram:
-   1. The rval of argc is four.
-   1. The rval of argv is an address in memory: 0x7fffefec.
-   1. The depicted addresses of memory are in increments of 4.
+   1. The rval of argc is 4, which corresponds to the number of command-line arguments.
+   1. The rval of argv is an address in memory, 0x7fffefec, where the array is stored.
+   1. The depicted memory addresses are in increments of 4.
       - Recall, an address is a 32-bit quantity on the MIPS architecture.
       - Hence, 4 bytes are required to store each 32-bit quantity.
    1. The rval of each array element is an address.
-      - This address is the starting location of each string: "one", "two", "three", and "four".
+      - This address is the starting location of each string: "one", "two", "three", and "four". This address is not provided in the diagram, but is depicted by a pointer.
    1. The variable p_arg has been introduced into the diagram.
-      - Via a loop, we will exam each element of the argv array: argv[0] ... argv[3].
-      - The p_arg variable is used to <i>p</i>oint to the current <i>arg</i>ument being processed.
+      - Via a loop, we can examine each element of the argv array: argv[0] ... argv[3].
+      - The p_arg variable is used to <i>p</i>oint to the current <i>arg</i>ument being examined.
 
 
 ### Project Deliverables
@@ -115,7 +113,7 @@ The deliverables for this projects are:
 
   1. echo.s: which prints out the series 1 .. argc 
      - Language: MIPS
-     - Task: insert a loop to print the value separated by a newline ('\n')
+     - Task: insert a loop to print each value in the series on individual lines
      - Tag: mips-echo-loop
 
   1. echo.s: prints out the command-line arguments
@@ -158,7 +156,7 @@ The deliverables for this projects are:
           - ``git add echo.java``
           - ``git commit -m 'some informative message'`` 
           - ``git tag java-echo-done``
-  ---
+       ---
   1. Work on the Java version of the project.
      * Stage 3: 
        1. Create an file called echo.s that includes the starter code
