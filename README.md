@@ -27,24 +27,25 @@
       1. the command-line argument passing convention
       1. the use of syscall to perform I/O operations
       1. the use of a loop to iterate over an array
-   1. To further exercise the use "git"
+   1. To further exercise the use of "git"
 
 
 ## Project Description
-This is your first MIPS program. To complete this program, you will be guided through a prescribed development process, via a set of stages. Each stage is designed to help you to complete the final MIPS program.  Moreover, each stage produces a working program, which is a deliverable associated with this project.  To complete this project successfully, each of your individual deliverables must compile/assemble and pass the Professor's test cases. 
+This is your first MIPS program. To complete this program, you will be guided through a prescribed development process, via a set of stages. Each stage is designed to help you to better understand the problem at hand or to complete the final MIPS program.  Moreover, each stage produces a working program, which is a deliverable associated with this project.  
+To complete this project successfully, each of your individual deliverables must compile/assemble and pass the Professor's test cases. 
 
 ### Command Line Processing and the argv data structure
 
 Consider the following prototypes for the main method/function in Java and C, which are practically equivalent.
 
    - Java
-   ```java
-      public static int main(String args[]);
-   ```
+     ```java
+        public static int main(String args[]);
+     ```
    - C
-   ```C
-      int main(int argc, char * argv[]);
-   ```
+     ```C
+       int main(int argc, char * argv[]);
+     ```
 
      * argc is an integer representing the **arg**ument **c**ount
        - in Java parlance, argc is equivalent to args.length;
