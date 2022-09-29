@@ -5,7 +5,7 @@
    1. Write a MIPS program equivalent to the echo utility
 
 ## Echo Overview
-  - ``$ man echo``
+  - From: ``$ man echo``
   - Name:
     * echo - write arguments to the standard output
 
@@ -21,7 +21,7 @@
     ```
 
 ## Assignment Objectives:
-   1. To introduce command-line processing
+   1. To introduce command-line processing, which is defined across all programming languages
    1. To exercise the student's Java knowledge to create the 'echo' command
    1. To introduce the student to MIPS programming:
       1. the structure of the main subroutine
@@ -52,19 +52,21 @@ Consider the following prototypes for the main method/function in Java and C, wh
       int main(int argc, char * argv[]);
     ```
 
-    * argc is an integer representing the **arg**ument **c**ount
+    * argc is an integer representing the <i>arg</i>ument <i>c</i>ount
       - In Java parlance, argc is equivalent to args.length
 
     * argv is an array, where each element is a string
       - In C, a string is implemented as a pointer to a char, e.g., (char \*)
-      - In Java, the underlying implementation of a String is also a pointer to a char
+      - In Java, the <i>underlying</i> implementation of a String is also a pointer to a char
 
 A MIPS program can also have command-line arguments. These are not provided via formal arguments as in Java and C, but are provided to the main subroutine via registers.
 
   - argc is placed into $a0, and the value represents an integer
-  - argv is placed into $a1, and the value represents the address of argv
+  - argv is placed into $a1, and the value represents the address
 
-The MARS application requires additional syntax to call a MIPS program with arguments from the command line. This syntax is as follows:
+The MARS application requires additional syntax to call a MIPS program with arguments from the command line. The 'pa' (program arguments) option is used to introduce the command-line arguments.
+
+This syntax is as follows:
 
   ```
   $ mars echo.s pa apple peach grape
@@ -75,8 +77,6 @@ The MARS application requires additional syntax to call a MIPS program with argu
   grape
    
   ```
-  - pa (program arguments): indicate that the following command-line arguments are passed to the echo.s program.
-
 
 Given the command ``$ echo one two three four``, we can depict the values of argc and argv as follows:
 
@@ -92,7 +92,7 @@ Note the following within the diagram:
       - This address is the starting location of each string: "one", "two", "three", and "four".
    1. The variable p_arg has been introduced into the diagram.
       - Via a loop, we will exam each element of the argv array: argv[0] ... argv[3].
-      - The p_arg variable is used to **p**oint to the current **arg**ument being processed.
+      - The p_arg variable is used to <i>p</i>oint to the current <i>arg</i>ument being processed.
 
 
 ### Project Deliverables
@@ -158,7 +158,7 @@ The deliverables for this projects are:
           - ``git add echo.java``
           - ``git commit -m 'some informative message'`` 
           - ``git tag java-echo-done``
----
+  ---
   1. Work on the Java version of the project.
      * Stage 3: 
        1. Create an file called echo.s that includes the starter code
@@ -166,7 +166,7 @@ The deliverables for this projects are:
           1. Bookkeeping comments have been added to identify register allocation
           1. Code has been added to de-marshal the formal arguments
           1. A syscall, via the print_d macro, is used to print a decimal number
-          1. A syscall, via the exiti macro, is used to exit the program with an **i**mmediate value
+          1. A syscall, via the exiti macro, is used to exit the program with an <i>i</i>mmediate value
        1. Use the booking comments to guide your develop.
        1. Test this program to ensure it works correctly.
           ```
@@ -225,7 +225,7 @@ The deliverables for this projects are:
           apple peach grape
           $
           ```
----
+  ---
   1. Perform final testing and submitting your project
      1. Run each of the test cases in the "Validation Testing" Section
      1. Ensure you push both your code and your tags to your repository 
