@@ -39,7 +39,7 @@ To complete this project successfully, each of your individual deliverables must
 
 ### Command Line Processing and the argv Data Structure
 
-Consider the following prototypes for the main method/function in Java and C, which are practically equivalent.
+Consider the following prototypes for the main method/function in Java and C, which are practically equivalent.[^1]
 
   - Java
     * Example usage: ``$ java echo one two three four``
@@ -69,16 +69,18 @@ The MARS application requires additional syntax to call a MIPS program with argu
 This syntax is as follows:
 
   ```
-  $ mars echo.s pa apple peach grape
+  $ mars echo.s pa one two three four
   MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
    
-  apple peach graph
+  one two three four
    
   ```
 
-Given the command ``$ echo one two three four``, we can depict the values of argc and argv as follows:
+Given the CLI command ``$ echo one two three four``, we can depict the values of argc and argv as follows:
 
 ![The data structure for the argv](/argv.png)
+
+[^1]: In C, the program name is stored in argv[0].  Consequently, the command-line arguments are then stored in argv[1]..argv[argc].  Java and MARS, use the structure as depicted above.
 
 Note the following within the diagram:
    1. The rval of argc is 4, which corresponds to the number of command-line arguments.
@@ -91,6 +93,7 @@ Note the following within the diagram:
    1. The variable p_arg has been introduced into the diagram.
       - Via a loop, we can examine each element of the argv array: argv[0] ... argv[3].
       - The p_arg variable is used to <i>p</i>oint to the current <i>arg</i>ument being examined.
+
 
 
 ### Project Deliverables
@@ -168,7 +171,7 @@ The deliverables for this projects are:
        1. Use the booking comments to guide your develop.
        1. Test this program to ensure it works correctly.
           ```
-          $ mars me echo.s pa apple peach grape 2> /dev/null
+          $ mars me echo.s pa one two three four 2> /dev/null
           4
           $
           ```
