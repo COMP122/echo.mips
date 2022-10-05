@@ -44,12 +44,12 @@ Consider the following prototypes for the main method/function in Java and C, wh
   - Java
     * Example usage: ``$ java echo one two three four``
       ```java
-         public static int main(String args[]);
+         public static void main(String args[]);
       ```
   - C
     * Example usage: ``$ echo one two three four``
       ```C
-        int main(int argc, char * argv[]);
+        ind main(int argc, char * argv[]);
       ```
 
     * argc is an integer representing the <u>arg</u>ument <u>c</u>ount
@@ -287,12 +287,12 @@ Via the command line, test your program with at least the following test cases.
    class echo  
    {  
    
-     public static int main(String args[]) {
+     public static void main(String args[]) {
    
        final int argc = args.length; 
        System.out.printf("%d\n",argc);
    
-       return 0; 
+       System.exit(0); 
      }
    }  
    ```
