@@ -49,7 +49,7 @@ Consider the following prototypes for the main method/function in Java and C, wh
   - C
     * Example usage: ``$ echo one two three four``
       ```C
-        ind main(int argc, char * argv[]);
+        int main(int argc, char * argv[]);
       ```
 
     * argc is an integer representing the <u>arg</u>ument <u>c</u>ount
