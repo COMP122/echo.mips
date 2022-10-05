@@ -180,25 +180,26 @@ The deliverables for this projects are:
           ```
           i=0;
           for( ; i < argc; ) {
-            printf("%d\n", i);
+            System.out.printf("%d\n", i);
             i++;
           }
           ```
        1. Incorporate the following MIPS loop into your program
           -  this loop is equivalent to the above Java loop
           ``` 
-                 li $t1, 0              # i=0
-          loop:  bge $t1, $t0, done     # for ( ; i < argc ; ) {
-                   print_d $t0          #   print("%d\n", i);
-                   print_ci '\n'        #
-                   addi $t1, $t1, 1     #   i++;
-                 b loop                 #
-          done:  nop                    # }
+                 li $t1, 0              #        i=0
+          loop:  bge $t1, $t0, done     # loop:  for (; i < argc ;) {
+                   print_d $t0          #          System.out.printf("%d\n", i);
+                   print_ci '\n'        #    
+                   addi $t1, $t1, 1     #          i++;
+                 b loop                 #          continue loop;
+                                        #        }
+          done:  nop                    # done:  ;
           ```
        1. Remove the code that prints out the number of arguments.
        1. Test your code to ensure you have the following output
           ```
-          $ mars me echo_cmd_line.s pa apple peach grape 2>/dev/null
+          $ mars me echo.s pa apple peach grape 2>/dev/null
           1
           2
           3
@@ -217,7 +218,7 @@ The deliverables for this projects are:
 
        1. Test your code to ensure you have the following output
           ```
-          $ mars me echo_cmd_line.s pa apple peach grape 2>/dev/null
+          $ mars me echo.s pa apple peach grape 2>/dev/null
           apple peach grape
           $
           ```
