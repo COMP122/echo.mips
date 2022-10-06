@@ -266,9 +266,9 @@ Via the command line, test your program with at least the following test cases.
    ```
    $ git checkout mips-echo-loop
    $ mars me echo.s pa apple peach grape 2>/dev/null
+   0
    1
    2
-   3
    $ git checkout main
    ```
 
