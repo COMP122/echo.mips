@@ -187,7 +187,7 @@ The deliverables for this projects are:
        1. Incorporate the following MIPS loop into your program
           -  this loop is equivalent to the above Java loop
           ``` 
-                 li $t1,               #        i=0
+                 li $t1, 0              #        i=0
           loop:  bge $t1, $t0, done     # loop:  for (; i < argc ;) {
                    print_d $t1          #          System.out.printf("%d\n", i);
                    print_ci '\n'        #    
